@@ -1,0 +1,27 @@
+apiVersion: rds.services.k8s.aws/v1alpha1
+kind: DBInstance
+metadata:
+  name: rds-db001
+  namespace: rds-db
+spec:
+  allocatedStorage: 100G
+  autoMinorVersionUpgrade: true
+  backupRetentionPeriod: 7
+  dbInstanceClass: t3.medium
+  dbInstanceIdentifier: rds
+  dbName: jira
+  dbSubnetGroupName: ${RDS_SUBNET_GROUP_NAME}
+  enablePerformanceInsights: true
+  engine: postgres
+  engineVersion: "13"
+  masterUsername: ${RDS_DB_USERNAME}
+  masterUserPassword:
+    namespace: ${APP_NAMESPACE}
+    name: jira-postgres-creds
+    key: password
+  multiAZ: true
+  publiclyAccessible: false
+  storageEncrypted: true
+  storageType: gp2
+  vpcSecurityGroupIDs:
+    - ${RDS_SECURITY_GROUP_ID}
