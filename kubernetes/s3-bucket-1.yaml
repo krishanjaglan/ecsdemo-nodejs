@@ -1,12 +1,2 @@
-apiVersion: s3.aws.upbound.io/v1beta1
-kind: Bucket
-metadata:
-  name: new-crossplane-bucket-kj-1234
-  labels:
-    docs.crossplane.io/example: provider-aws
-spec:
-  forProvider:
-    region: eu-west-1
-  providerConfigRef:
-    name: default
+
 
